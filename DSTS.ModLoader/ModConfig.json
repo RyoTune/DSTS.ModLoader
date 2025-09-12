@@ -3,19 +3,58 @@
   "ModName": "Digimon Story: Time Stranger Mod Loader",
   "ModAuthor": "RyoTune",
   "ModVersion": "1.0.0",
-  "ModDescription": "Description",
+  "ModDescription": "Allows mods to replace game files without any unpacking/repacking.",
   "ModDll": "DSTS.ModLoader.dll",
   "ModIcon": "Preview.png",
   "ModR2RManagedDll32": "x86/DSTS.ModLoader.dll",
   "ModR2RManagedDll64": "x64/DSTS.ModLoader.dll",
   "ModNativeDll32": "",
   "ModNativeDll64": "",
+  "Tags": [],
+  "CanUnload": false,
+  "HasExports": false,
   "IsLibrary": false,
   "ReleaseMetadataFileName": "DSTS.ModLoader.ReleaseMetadata.json",
-  "PluginData": {},
+  "PluginData": {
+    "GitHubDependencies": {
+      "IdToConfigMap": {
+        "reloaded.sharedlib.hooks": {
+          "Config": {
+            "UserName": "Sewer56",
+            "RepositoryName": "Reloaded.SharedLib.Hooks.ReloadedII",
+            "UseReleaseTag": true,
+            "AssetFileName": "reloaded.sharedlib.hooks.zip"
+          },
+          "ReleaseMetadataName": "Sewer56.Update.ReleaseMetadata.json"
+        },
+        "Reloaded.Memory.SigScan.ReloadedII": {
+          "Config": {
+            "UserName": "Reloaded-Project",
+            "RepositoryName": "Reloaded.Memory.SigScan",
+            "UseReleaseTag": false,
+            "AssetFileName": "Mod.zip"
+          },
+          "ReleaseMetadataName": "Reloaded.Memory.SigScan.ReloadedII.ReleaseMetadata.json"
+        }
+      }
+    },
+    "GitHubRelease": {
+      "UserName": "RyoTune",
+      "RepositoryName": "DSTS.ModLoader",
+      "UseReleaseTag": false,
+      "AssetFileName": "Mod.zip"
+    }
+  },
   "IsUniversalMod": false,
-  "ModDependencies": [ "reloaded.sharedlib.hooks", "Reloaded.Memory.SigScan.ReloadedII" ],
+  "ModDependencies": [
+    "reloaded.sharedlib.hooks",
+    "Reloaded.Memory.SigScan.ReloadedII"
+  ],
   "OptionalDependencies": [],
-  "SupportedAppId": [],
-  "ProjectUrl": ""
+  "SupportedAppId": [
+    "digimon story time stranger.exe"
+  ],
+  "ProjectUrl": "",
+  "CreatorUrl": "",
+  "IsSeparator": false
 }
