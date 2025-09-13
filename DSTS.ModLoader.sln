@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSTS.ModLoader", "DSTS.ModLoader\DSTS.ModLoader.csproj", "{9BDFF5AF-EC38-4226-B4D7-7BCEF714736E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSTS.ModLoader.Interfaces", "DSTS.ModLoader.Interfaces\DSTS.ModLoader.Interfaces.csproj", "{BE735A16-FA15-49E1-A86B-D466E9FDF935}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{9BDFF5AF-EC38-4226-B4D7-7BCEF714736E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BDFF5AF-EC38-4226-B4D7-7BCEF714736E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9BDFF5AF-EC38-4226-B4D7-7BCEF714736E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE735A16-FA15-49E1-A86B-D466E9FDF935}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE735A16-FA15-49E1-A86B-D466E9FDF935}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE735A16-FA15-49E1-A86B-D466E9FDF935}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE735A16-FA15-49E1-A86B-D466E9FDF935}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

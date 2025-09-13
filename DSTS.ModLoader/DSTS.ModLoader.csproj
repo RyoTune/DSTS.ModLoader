@@ -50,4 +50,8 @@
         <PackageReference Include="RyoTune.Reloaded" Version="4.2.0" />
         <PackageReference Include="Reloaded.Memory.SigScan.ReloadedII.Interfaces" Version="1.2.0"/>
     </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\DSTS.ModLoader.Interfaces\DSTS.ModLoader.Interfaces.csproj" />
+    </ItemGroup>
 </Project>

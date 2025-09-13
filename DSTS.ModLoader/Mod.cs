@@ -5,11 +5,12 @@ using Reloaded.Hooks.ReloadedII.Interfaces;
 using Reloaded.Mod.Interfaces;
 using DSTS.ModLoader.Template;
 using DSTS.ModLoader.Configuration;
+using DSTS.ModLoader.Interfaces;
 using Reloaded.Mod.Interfaces.Internal;
 
 namespace DSTS.ModLoader;
 
-public class Mod : ModBase
+public class Mod : ModBase, IExports
 {
     private readonly IModLoader _modLoader;
     private readonly IReloadedHooks? _hooks;
@@ -19,7 +20,8 @@ public class Mod : ModBase
     public static Config Config = null!;
     private readonly IModConfig _modConfig;
     private readonly DstsModRegistry _registry;
-    private readonly DstsModLoader _dstsLoader;
+    private readonly DstsModLoader _loader;
+    private readonly IDstsApi _api;
 
     public Mod(ModContext context)
     {
@@ -36,7 +38,10 @@ public class Mod : ModBase
         Log.LogLevel = Config.LogLevel;
 
         _registry = new();
-        _dstsLoader = new(_registry);
+        _loader = new(_registry);
+        
+        _api = new DstsApi(_registry);
+        _modLoader.AddOrReplaceController(_owner, _api);
         
         _modLoader.ModLoaded += ModLoaded;
     }
@@ -52,6 +57,8 @@ public class Mod : ModBase
         var numFiles = _registry.AddFolder(digiDir);
         Log.Information($"Registered Mod: {modConfig.ModName} || Total Files: {numFiles}");
     }
+
+    public Type[] GetTypes() => [typeof(IDstsApi)];
 
     #region Standard Overrides
 
