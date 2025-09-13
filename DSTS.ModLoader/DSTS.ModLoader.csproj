@@ -33,15 +33,15 @@
         <None Remove="BuildLinked.ps1"/>
         <None Remove="Reloaded.Trimming.targets"/>
         <None Remove="Reloaded.Checks.targets"/>
+        <None Update="Preview.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
     <ItemGroup>
         <Content Include="ModConfig.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
-        <None Update="Preview.png">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
     </ItemGroup>
 
     <ItemGroup>
