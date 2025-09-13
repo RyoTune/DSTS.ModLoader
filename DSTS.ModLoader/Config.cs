@@ -9,9 +9,9 @@ public class Config : Configurable<Config>
     [DefaultValue(LogLevel.Information)]
     public LogLevel LogLevel { get; set; } = LogLevel.Information;
 
-    [DisplayName("Log Files")]
+    [DisplayName("Developer Mode")]
     [DefaultValue(false)]
-    public bool LogFilesEnabled { get; set; } = false;
+    public bool DevMode { get; set; } = false;
 }
 
 /// <summary>

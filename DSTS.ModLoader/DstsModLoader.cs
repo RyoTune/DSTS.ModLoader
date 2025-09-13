@@ -29,11 +29,11 @@ public unsafe class DstsModLoader
         _LoadFile = new(LoadFileImpl, "40 55 53 56 57 41 54 41 55 41 56 41 57 48 8D AC 24 ?? ?? ?? ?? 48 81 EC 58 05 00 00");
         _GetFileSize = new(GetFileSizeImpl, "48 89 5C 24 ?? 55 56 57 41 54 41 55 41 56 41 57 48 8D AC 24 ?? ?? ?? ?? 48 81 EC 20 06 00 00");
     }
-
+    
     private nint LoadFileImpl(PackInfo* sourcePack, nint filePath, nint buffer, nint size, nint param_5, nint param_6, int param_7)
     {
         var filePathStr = Marshal.PtrToStringAnsi(filePath)!;
-        if (Mod.Config.LogFilesEnabled)
+        if (Mod.Config.DevMode)
         {
             Log.Information($"{nameof(LoadFile)} || File: {filePathStr}");
         }
@@ -42,17 +42,17 @@ public unsafe class DstsModLoader
             Log.Debug($"{nameof(LoadFile)} || File: {filePathStr}");
         }
         
-        if (_registry.TryGetModFile(filePathStr, out var modFile))
+        if (_registry.TryGetFile(filePathStr, out var newFile))
         {
-            Log.Debug($"{nameof(LoadFile)} || Replacing: {filePath}\nMod File: {modFile}");
+            Log.Debug($"{nameof(LoadFile)} || Replacing: {filePath}\nFile: {newFile}");
             
-            using var fs = new FileStream(modFile.Path, FileMode.Open, FileAccess.Read, FileShare.Read);
-            if (ReadFile(fs.SafeFileHandle, buffer, (int)modFile.Size, out _, nint.Zero))
+            using var fs = new FileStream(newFile.Path, FileMode.Open, FileAccess.Read, FileShare.Read);
+            if (ReadFile(fs.SafeFileHandle, buffer, (int)newFile.Size, out _, nint.Zero))
             {
                 return 1;
             }
             
-            Log.Error($"ReadFile failed.\nFile: {modFile.Path}");
+            Log.Error($"ReadFile failed.\nFile: {newFile.Path}");
         }
         
         return _LoadFile.Hook!.OriginalFunction(sourcePack, filePath, buffer, size, param_5, param_6, param_7);
@@ -61,13 +61,13 @@ public unsafe class DstsModLoader
     private nint GetFileSizeImpl(nint param_1, nint filePath, long* size, nint param_4, int param_5)
     {
         var filePathStr = Marshal.PtrToStringAnsi(filePath)!;
-        if (_registry.TryGetModFile(filePathStr, out var modFile))
+        if (_registry.TryGetFile(filePathStr, out var modFile))
         {
             *size = modFile.Size;
             return 1;
         }
-        
-        return _GetFileSize.Hook!.OriginalFunction(param_1, filePath, size, param_4, param_5);;
+
+        return _GetFileSize.Hook!.OriginalFunction(param_1, filePath, size, param_4, param_5);
     }
     
     [StructLayout(LayoutKind.Sequential)]
