@@ -15,11 +15,11 @@ public unsafe class DstsModLoader
         out int lpNumberOfBytesRead,
         IntPtr lpOverlapped);
     
-    private delegate nint LoadFile(PackInfo* sourcePack, nint filePath, nint buffer, nint size, nint param_5, nint param_6, int param_7);
-    private readonly SHFunction<LoadFile> _LoadFile;
+    private delegate nint PackFileResource_LoadFile(PackInfo* sourcePack, nint filePath, nint buffer, nint size, nint param_5, nint param_6, int param_7);
+    private readonly SHFunction<PackFileResource_LoadFile> _LoadFile;
     
-    private delegate nint GetFileSize(nint param_1, nint filePath, long* size, nint param_4, int param_5);
-    private readonly SHFunction<GetFileSize> _GetFileSize;
+    private delegate nint PackFileResource_GetFileSize(nint param_1, nint filePath, long* size, nint param_4, int param_5);
+    private readonly SHFunction<PackFileResource_GetFileSize> _GetFileSize;
     
     private readonly DstsModRegistry _registry;
     
@@ -35,16 +35,16 @@ public unsafe class DstsModLoader
         var filePathStr = Marshal.PtrToStringAnsi(filePath)!;
         if (Mod.Config.DevMode)
         {
-            Log.Information($"{nameof(LoadFile)} || File: {filePathStr}");
+            Log.Information($"{nameof(PackFileResource_LoadFile)} || File: {filePathStr}");
         }
         else
         {
-            Log.Debug($"{nameof(LoadFile)} || File: {filePathStr}");
+            Log.Debug($"{nameof(PackFileResource_LoadFile)} || File: {filePathStr}");
         }
         
         if (_registry.TryGetFile(filePathStr, out var newFile))
         {
-            Log.Debug($"{nameof(LoadFile)} || Replacing: {filePath}\nFile: {newFile}");
+            Log.Debug($"{nameof(PackFileResource_LoadFile)} || Replacing: {filePath}\nFile: {newFile}");
             
             using var fs = new FileStream(newFile.Path, FileMode.Open, FileAccess.Read, FileShare.Read);
             if (ReadFile(fs.SafeFileHandle, buffer, (int)newFile.Size, out _, nint.Zero))

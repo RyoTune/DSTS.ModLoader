@@ -2,7 +2,7 @@
   "ModId": "DSTS.ModLoader",
   "ModName": "Digimon Story: Time Stranger Mod Loader",
   "ModAuthor": "RyoTune",
-  "ModVersion": "1.1.0",
+  "ModVersion": "1.1.1",
   "ModDescription": "Allows mods to replace game files without any unpacking/repacking.",
   "ModDll": "DSTS.ModLoader.dll",
   "ModIcon": "Preview.png",
