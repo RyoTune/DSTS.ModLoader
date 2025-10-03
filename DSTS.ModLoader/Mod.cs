@@ -5,6 +5,7 @@ using Reloaded.Hooks.ReloadedII.Interfaces;
 using Reloaded.Mod.Interfaces;
 using DSTS.ModLoader.Template;
 using DSTS.ModLoader.Configuration;
+using MVGL.FileLoader.Interfaces;
 
 namespace DSTS.ModLoader;
 
@@ -31,6 +32,9 @@ public class Mod : ModBase
 #endif
         Project.Initialize(_modConfig, _modLoader, _log, true);
         Log.LogLevel = _config.LogLevel;
+
+        _modLoader.GetController<IMvglApi>().TryGetTarget(out var mvgl);
+        mvgl!.AddProbingPath("dsts-loader");
     }
 
     #region Standard Overrides

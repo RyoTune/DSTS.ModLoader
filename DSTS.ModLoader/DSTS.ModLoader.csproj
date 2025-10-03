@@ -36,6 +36,12 @@
         <None Update="Preview.png">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
+        <None Update="Project\MVGL.FileLoader.Reloaded\scans.ini">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="Project\MVGL.FileLoader.Reloaded\settings.ini">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
     <ItemGroup>
@@ -45,7 +51,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="MVGL.FileLoader.Interfaces" Version="1.0.0" />
+        <PackageReference Include="MVGL.FileLoader.Interfaces" Version="1.1.0" />
         <PackageReference Include="Reloaded.Mod.Interfaces" Version="2.4.0" ExcludeAssets="runtime"/>
         <PackageReference Include="Reloaded.SharedLib.Hooks" Version="1.9.0"/>
         <PackageReference Include="RyoTune.Reloaded" Version="4.2.0" />
