@@ -18,14 +18,14 @@
   "PluginData": {
     "GitHubDependencies": {
       "IdToConfigMap": {
-        "reloaded.sharedlib.hooks": {
+        "MVGL.FileLoader.Reloaded": {
           "Config": {
-            "UserName": "Sewer56",
-            "RepositoryName": "Reloaded.SharedLib.Hooks.ReloadedII",
-            "UseReleaseTag": true,
-            "AssetFileName": "reloaded.sharedlib.hooks.zip"
+            "UserName": "RyoTune",
+            "RepositoryName": "MVGL.FileLoader",
+            "UseReleaseTag": false,
+            "AssetFileName": "Mod.zip"
           },
-          "ReleaseMetadataName": "Sewer56.Update.ReleaseMetadata.json"
+          "ReleaseMetadataName": "MVGL.FileLoader.Reloaded.ReleaseMetadata.json"
         },
         "Reloaded.Memory.SigScan.ReloadedII": {
           "Config": {
@@ -35,6 +35,15 @@
             "AssetFileName": "Mod.zip"
           },
           "ReleaseMetadataName": "Reloaded.Memory.SigScan.ReloadedII.ReleaseMetadata.json"
+        },
+        "reloaded.sharedlib.hooks": {
+          "Config": {
+            "UserName": "Sewer56",
+            "RepositoryName": "Reloaded.SharedLib.Hooks.ReloadedII",
+            "UseReleaseTag": true,
+            "AssetFileName": "reloaded.sharedlib.hooks.zip"
+          },
+          "ReleaseMetadataName": "Sewer56.Update.ReleaseMetadata.json"
         }
       }
     },
@@ -47,8 +56,9 @@
   },
   "IsUniversalMod": false,
   "ModDependencies": [
-    "reloaded.sharedlib.hooks",
-    "Reloaded.Memory.SigScan.ReloadedII"
+    "MVGL.FileLoader.Reloaded",
+    "Reloaded.Memory.SigScan.ReloadedII",
+    "reloaded.sharedlib.hooks"
   ],
   "OptionalDependencies": [],
   "SupportedAppId": [
