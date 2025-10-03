@@ -5,23 +5,18 @@ using Reloaded.Hooks.ReloadedII.Interfaces;
 using Reloaded.Mod.Interfaces;
 using DSTS.ModLoader.Template;
 using DSTS.ModLoader.Configuration;
-using DSTS.ModLoader.Interfaces;
-using Reloaded.Mod.Interfaces.Internal;
 
 namespace DSTS.ModLoader;
 
-public class Mod : ModBase, IExports
+public class Mod : ModBase
 {
     private readonly IModLoader _modLoader;
     private readonly IReloadedHooks? _hooks;
     private readonly ILogger _log;
     private readonly IMod _owner;
 
-    public static Config Config = null!;
+    private Config _config;
     private readonly IModConfig _modConfig;
-    private readonly DstsModRegistry _registry;
-    private readonly DstsModLoader _loader;
-    private readonly IDstsApi _api;
 
     public Mod(ModContext context)
     {
@@ -29,36 +24,14 @@ public class Mod : ModBase, IExports
         _hooks = context.Hooks;
         _log = context.Logger;
         _owner = context.Owner;
-        Config = context.Configuration;
+        _config = context.Configuration;
         _modConfig = context.ModConfig;
 #if DEBUG
         Debugger.Launch();
 #endif
         Project.Initialize(_modConfig, _modLoader, _log, true);
-        Log.LogLevel = Config.LogLevel;
-
-        _registry = new();
-        _loader = new(_registry);
-        
-        _api = new DstsApi(_registry);
-        _modLoader.AddOrReplaceController(_owner, _api);
-        
-        _modLoader.ModLoaded += ModLoaded;
+        Log.LogLevel = _config.LogLevel;
     }
-
-    private void ModLoaded(IModV1 mod, IModConfigV1 modConfig)
-    {
-        if (!Project.IsModDependent(modConfig)) return;
-
-        var modDir = _modLoader.GetDirectoryForModId(modConfig.ModId);
-        var digiDir = Path.Join(modDir, "dsts-loader");
-        if (!Directory.Exists(digiDir)) return;
-        
-        var numFiles = _registry.AddFolder(digiDir);
-        Log.Information($"Registered Mod: {modConfig.ModName} || Total Files: {numFiles}");
-    }
-
-    public Type[] GetTypes() => [typeof(IDstsApi)];
 
     #region Standard Overrides
 
@@ -66,9 +39,9 @@ public class Mod : ModBase, IExports
     {
         // Apply settings from configuration.
         // ... your code here.
-        Config = configuration;
+        _config = configuration;
         _log.WriteLine($"[{_modConfig.ModId}] Config Updated: Applying");
-        Log.LogLevel = Config.LogLevel;
+        Log.LogLevel = _config.LogLevel;
     }
 
     #endregion
